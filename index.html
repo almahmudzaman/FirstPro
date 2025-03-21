@@ -1,28 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <title>Lab work</title>
     <div style="display: flex; justify-content: center;">
-        <img src="https://www.shutterstock.com/image-vector/amz-logo-monogram-isolated-on-600nw-2525214551.jpg" style="height: 100px; width: 100px;" alt="amz-logo-monogram-isolated-on-600nw-2525214551">
+        <img src="https://www.shutterstock.com/image-vector/amz-logo-monogram-isolated-on-600nw-2525214551.jpg"
+            style="height: 100px; width: 100px;" alt="amz-logo-monogram-isolated-on-600nw-2525214551">
     </div>
     <div style="display: flex; justify-content: center;">
         <h4>My profile</h4>
     </div>
 
-        <div style="display: flex; flex-direction: row; justify-content: center;" >
-            <div style="display: flex; flex-direction: column;">
-                <div style="background-color: navajowhite; height: 300px; width: 200px;" >box1</div>
-            <div style="background-color: rgb(190, 113, 57); height: 200px; width: 200px;" >box2</div>
+    <div style="display: flex; flex-direction: row; justify-content: center;">
+        <div style="display: flex; flex-direction: column;">
+            <div style="background-color: navajowhite; height: 450px; width: 300px;">
+                <form>
+                    <div style="display: flex; flex-direction: row; justify-content: center;">
+                        <h3>Get Registration</h3>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; justify-content: center; text-align: start;">
+
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname"> 
+                    </div>
+
+                        <label for="gender">Gender:</label>
+                        <input type="radio" id="male" name="male"> 
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="female"> 
+                        <label for="female">Female</label>
+                    <div style="display: flex; flex-direction: column; justify-content: center;">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="youremailid@gamil.com"> 
+
+                        <label for="pass">Password:</label>
+                        <input type="password" id="pass" name="pass"> 
+
+                        <label for="conpass">Confirm Password:</label>
+                        <input type="password" id="conpass" name="conpass"> 
+
+                        <label for="birth">Date of Birth:</label>
+                        <input type="date" id="birth" name="birth">
+
+                        <label for="country">Country:</label>
+                            <select name="country" id="country">
+                                <option value="BD">Bangladesh</option>
+                                <option value="IN">India</option>
+                                <option value="AM">Amarica</option>
+                                <option value="CH">China</option>
+                            </select>
+                        
+                    </div>
+
+                    <div class="tacbox">
+                        <input id="checkbox" type="checkbox" />
+                        <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+                    </div>
+                    
+                    <label for="opinion">Your Opinion:</label><br>
+                    <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea><br>
+
+                    <label for="bgc">Background Color:</label>
+                    <input type="color" id="bgc" name="bgc">
+
+
+                    <button type="submit">Submit</button>
+
+                </form>
+            </div>
+            <div style="background-color: rgb(212, 164, 129); height: 250px; width: 300px;">box2</div>
         </div>
 
-        <div style="background-color: rgb(186, 87, 157); height: 500px; width: 200px;" >
+        <div style="background-color: rgb(223, 157, 203); height: 700px; width: 250px;">
             box3
         </div>
     </div>
 </body>
+
 </html>
