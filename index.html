@@ -2,87 +2,140 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab work</title>
+    <!-- External CSS link -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <title>Lab work</title>
-    <div style="display: flex; justify-content: center;">
+    <!-- Centered logo container -->
+    <div class="center-content">
+        <!-- Logo image -->
         <img src="https://www.shutterstock.com/image-vector/amz-logo-monogram-isolated-on-600nw-2525214551.jpg"
-            style="height: 100px; width: 100px;" alt="amz-logo-monogram-isolated-on-600nw-2525214551">
-    </div>
-    <div style="display: flex; justify-content: center;">
-        <h4>My profile</h4>
+            class="logo" alt="amz-logo" />
     </div>
 
-    <div style="display: flex; flex-direction: row; justify-content: center;">
-        <div style="display: flex; flex-direction: column;">
-            <div style="background-color: navajowhite; height: 450px; width: 300px;">
-                <form>
-                    <div style="display: flex; flex-direction: row; justify-content: center;">
-                        <h3>Get Registration</h3>
-                    </div>
+    <!-- Centered profile heading -->
+    <div class="center-content">
+        <!-- Profile title -->
+        <h2>My profile</h2>
+    </div>
 
-                    <div style="display: flex; flex-direction: column; justify-content: center; text-align: start;">
+    <!-- Main container for form and boxes -->
+    <div class="main-container">
+        <!-- Left panel containing form and box2 -->
+        <div class="left-panel">
+            <!-- Form wrapper -->
+            <div class="form-container">
 
+
+                <!-- Start of form -->
+                <form onsubmit="return validateForm()">
+
+
+                    <!-- Form title -->
+                    <h3 class="form-title">Get Registration</h3>
+
+                    <!-- Full name input -->
+                    <div class="form-group">
                         <label for="fullname">Full Name:</label>
-                        <input type="text" id="fullname" name="fullname"> 
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" onclick="return validate()" />
                     </div>
 
-                        <label for="gender">Gender:</label>
-                        <input type="radio" id="male" name="male"> 
-                        <label for="male">Male</label>
-                        <input type="radio" id="female" name="female"> 
-                        <label for="female">Female</label>
-                    <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <!-- Gender selection -->
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <!-- Radio buttons for gender -->
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" />
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" />
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
 
+                    <!-- Email input -->
+                    <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="youremailid@gamil.com"> 
+                        <input type="email" id="email" name="email" placeholder="Enter your email" />
+                    </div>
 
+                    <!-- Password input -->
+                    <div class="form-group">
                         <label for="pass">Password:</label>
-                        <input type="password" id="pass" name="pass"> 
+                        <input type="password" id="pass" name="pass" placeholder="Enter password" />
+                    </div>
 
-                        <label for="conpass">Confirm Password:</label>
-                        <input type="password" id="conpass" name="conpass"> 
+                    <!-- Confirm password input -->
+                    <div class="form-group">
+                        <label for="conpass">Re Password:</label>
+                        <input type="password" id="conpass" name="conpass" placeholder="Confirm password" />
+                    </div>
 
+                    <!-- Date of birth input -->
+                    <div class="form-group">
                         <label for="birth">Date of Birth:</label>
-                        <input type="date" id="birth" name="birth">
+                        <input type="date" id="birth" name="birth" />
+                    </div>
 
+                    <!-- Country selection dropdown -->
+                    <div class="form-group">
                         <label for="country">Country:</label>
-                            <select name="country" id="country">
-                                <option value="BD">Bangladesh</option>
-                                <option value="IN">India</option>
-                                <option value="AM">Amarica</option>
-                                <option value="CH">China</option>
-                            </select>
-                        
+                        <select name="country" id="country">
+                            <option value="SC">Select Country</option>
+                            <option value="BD">Bangladesh</option>
+                            <option value="IN">India</option>
+                            <option value="AM">America</option>
+                            <option value="CH">China</option>
+                        </select>
                     </div>
 
-                    <div class="tacbox">
+                    <!-- Terms and conditions checkbox -->
+                    <div style="margin-top: 10px;">
                         <input id="checkbox" type="checkbox" />
-                        <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+                        <label for="checkbox">I agree to these <a href="#">Terms and Conditions</a>.</label>
                     </div>
-                    
-                    <label for="opinion">Your Opinion:</label><br>
-                    <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea><br>
 
-                    <label for="bgc">Background Color:</label>
-                    <input type="color" id="bgc" name="bgc">
+                    <!-- Opinion textarea -->
+                    <div style="margin-top: 10px;">
+                        <label for="opinion">Your Opinion:</label>
+                        <textarea id="opinion" name="opinion" rows="4" cols="40" placeholder="Share your thoughts..." style="width: 275px; ; margin-top: 5px;"></textarea>
+                    </div>
 
+                    <!-- Background color input -->
+                    <div class="form-group">
+                        <label for="bgc">Background Color:</label>
+                        <input type="color" id="bgc" name="bgc" />
+                    </div>
 
-                    <button type="submit">Submit</button>
+                    <!-- Invalid message container (currently empty) -->
+                    <div class="invalid">
 
+                    </div>
+
+                    <!-- Buttons for clear and submit -->
+                    <div class="button-container">
+                        <button type="button" onclick="clearForm()">Clear</button>  <!-- Clear button -->
+                        <button type="submit">Submit</button>  <!-- Submit button -->
+                    </div>
                 </form>
             </div>
-            <div style="background-color: rgb(212, 164, 129); height: 250px; width: 300px;">box2</div>
+
+            <!-- Second box in the left panel -->
+            <div class="box box2">box2</div>
         </div>
 
-        <div style="background-color: rgb(223, 157, 203); height: 700px; width: 250px;">
+        <!-- Right panel box -->
+        <div class="box box3">
             box3
         </div>
     </div>
+
+    <!-- At the bottom of the body, include your external JS -->
+    <script src="script.js"></script>
 </body>
 
 </html>
+
