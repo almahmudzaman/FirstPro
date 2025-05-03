@@ -7,74 +7,72 @@
     <title>Lab work</title>
     <!-- External CSS link -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="aqi.css" />
 </head>
 
 <body>
     <!-- Centered logo container -->
     <div class="center-content">
         <!-- Logo image -->
-        <img src="https://www.shutterstock.com/image-vector/amz-logo-monogram-isolated-on-600nw-2525214551.jpg"
-            class="logo" alt="amz-logo" />
+        <img src="https://static.vecteezy.com/system/resources/previews/008/996/254/non_2x/aqi-logo-aqi-letter-aqi-letter-logo-design-initials-aqi-logo-linked-with-circle-and-uppercase-monogram-logo-aqi-typography-for-technology-business-and-real-estate-brand-vector.jpg"
+            class="logo" alt="aqi-logo" />
     </div>
 
     <!-- Centered profile heading -->
     <div class="center-content">
         <!-- Profile title -->
-        <h2>My profile</h2>
+        <h1>Air Quality Index</h1>
     </div>
 
-    <!-- Main container for form and boxes -->
+    <!-- Main container for form and AQI data -->
     <div class="main-container">
-        <!-- Left panel containing form and box2 -->
+        <!-- Left panel for registration and login forms -->
         <div class="left-panel">
-            <!-- Form wrapper -->
-            <div class="form-container">
-
-
-                <!-- Start of form -->
+            <!-- Sign-up form container -->
+            <div class="sign-up-form-container">
+                <!-- Form start -->
                 <form onsubmit="return validateForm()">
+                    <!-- Form heading -->
+                    <h2 class="form-title">Get Registration</h2>
 
-
-                    <!-- Form title -->
-                    <h3 class="form-title">Get Registration</h3>
-
-                    <!-- Full name input -->
+                    <!-- Full name input field -->
                     <div class="form-group">
                         <label for="fullname">Full Name:</label>
-                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" onclick="return validate()" />
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" />
                     </div>
 
-                    <!-- Gender selection -->
+                    <!-- Gender selection using radio buttons -->
                     <div class="form-group">
-                        <label>Gender:</label>
-                        <!-- Radio buttons for gender -->
+                        <label for="gender">Gender:</label>
                         <div class="radio-group">
                             <input type="radio" id="male" name="gender" />
                             <label for="male">Male</label>
                             <input type="radio" id="female" name="gender" />
                             <label for="female">Female</label>
+                            <input type="radio" id="other" name="gender" />
+                            <label for="other">Other</label>
                         </div>
                     </div>
 
-                    <!-- Email input -->
+                    <!-- Email address input -->
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email" />
                     </div>
 
-                    <!-- Password input -->
+                    <!-- Password input field -->
                     <div class="form-group">
                         <label for="pass">Password:</label>
                         <input type="password" id="pass" name="pass" placeholder="Enter password" />
                     </div>
 
-                    <!-- Confirm password input -->
+                    <!-- Confirm password field -->
                     <div class="form-group">
                         <label for="conpass">Re Password:</label>
                         <input type="password" id="conpass" name="conpass" placeholder="Confirm password" />
                     </div>
 
-                    <!-- Date of birth input -->
+                    <!-- Date of birth picker -->
                     <div class="form-group">
                         <label for="birth">Date of Birth:</label>
                         <input type="date" id="birth" name="birth" />
@@ -84,7 +82,7 @@
                     <div class="form-group">
                         <label for="country">Country:</label>
                         <select name="country" id="country">
-                            <option value="SC">Select Country</option>
+                            <option value="">Select Country</option>
                             <option value="BD">Bangladesh</option>
                             <option value="IN">India</option>
                             <option value="AM">America</option>
@@ -92,50 +90,93 @@
                         </select>
                     </div>
 
-                    <!-- Terms and conditions checkbox -->
-                    <div style="margin-top: 10px;">
+                    <!-- Terms and conditions agreement -->
+                    <div style="margin-top: 10px; font-size: 18px;">
                         <input id="checkbox" type="checkbox" />
                         <label for="checkbox">I agree to these <a href="#">Terms and Conditions</a>.</label>
                     </div>
 
-                    <!-- Opinion textarea -->
-                    <div style="margin-top: 10px;">
+                    <!-- Textarea for optional user opinion -->
+                    <div style="margin-top: 10px;font-size: 18px;">
                         <label for="opinion">Your Opinion:</label>
-                        <textarea id="opinion" name="opinion" rows="4" cols="40" placeholder="Share your thoughts..." style="width: 275px; ; margin-top: 5px;"></textarea>
+                        <textarea id="opinion" name="opinion" rows="4" cols="40" placeholder="Share your thoughts..." style="width: 325px; margin-top: 5px; border-radius: 7px;"></textarea>
                     </div>
 
-                    <!-- Background color input -->
+                    <!-- Background color picker -->
                     <div class="form-group">
                         <label for="bgc">Background Color:</label>
-                        <input type="color" id="bgc" name="bgc" />
+                        <input type="color" id="bgc" name="bgc" style="height: 40px; border-color: aliceblue;" />
                     </div>
 
-                    <!-- Invalid message container (currently empty) -->
-                    <div class="invalid">
+                    <!-- Error or success message container -->
+                    <div class="invalid"></div>
 
-                    </div>
-
-                    <!-- Buttons for clear and submit -->
+                    <!-- Form action buttons -->
                     <div class="button-container">
-                        <button type="button" onclick="clearForm()">Clear</button>  <!-- Clear button -->
-                        <button type="submit">Submit</button>  <!-- Submit button -->
+                        <button type="button" onclick="clearForm()">Clear</button> <!-- Clear all inputs -->
+                        <button type="submit">Submit</button> <!-- Submit form -->
                     </div>
                 </form>
             </div>
 
-            <!-- Second box in the left panel -->
-            <div class="box box2">box2</div>
+            <!-- Login form section -->
+            <div class="log-in-form-container">
+                <div id="login-title">Login</div>
+                <div class="form-blur-box">
+                    <div id="form-container">
+                        <!-- Username input -->
+                        <label for="username">Username</label><br>
+                        <input type="text" id="username" placeholder="Enter username"><br>
+
+                        <!-- Password input -->
+                        <label for="password">Password</label><br>
+                        <input type="password" id="password" placeholder="Enter password">
+                    </div>
+                </div>
+
+                <!-- Login action buttons -->
+                <div class="log-button-container">
+                    <button>Cancel</button>
+                    <button>Login</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Right panel box -->
-        <div class="box box3">
-            box3
+        <!-- AQI table section -->
+        <div class="aqi-table-container">
+            <div class="aqi-table">
+                <!-- AQI title -->
+                <div class="aqi-title">
+                    <h3>Air Quality Index (AQI)</h3>
+                </div>
+
+                <!-- AQI data table -->
+                <table id="aqi-table">
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>AQI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Dhaka</td><td class="aqi bad">150</td></tr>
+                        <tr><td>Chittagong</td><td class="aqi moderate">120</td></tr>
+                        <tr><td>Khulna</td><td class="aqi moderate">130</td></tr>
+                        <tr><td>Rajshahi</td><td class="aqi moderate">110</td></tr>
+                        <tr><td>Sylhet</td><td class="aqi good">90</td></tr>
+                        <tr><td>Barisal</td><td class="aqi good">100</td></tr>
+                        <tr><td>Rangpur</td><td class="aqi good">80</td></tr>
+                        <tr><td>Narayanganj</td><td class="aqi unhealthy">160</td></tr>
+                        <tr><td>Gazipur</td><td class="aqi unhealthy">170</td></tr>
+                        <tr><td>Comilla</td><td class="aqi moderate">95</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <!-- At the bottom of the body, include your external JS -->
+    <!-- External JavaScript file inclusion -->
     <script src="script.js"></script>
 </body>
 
 </html>
-
