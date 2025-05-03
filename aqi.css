@@ -1,0 +1,77 @@
+/* Container styling for AQI table */
+.aqi-table-container {
+    background-color: rgb(245, 167, 212); /* Light pink background for container */
+    width: 100%;
+    max-width: 280px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease; /* Smooth scale effect */
+}
+
+/* Table header */
+.aqi-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #6a1b9a; /* Deep purple color */
+}
+
+/* Table structure */
+#aqi-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Header styling */
+#aqi-table thead {
+    background-color: #ba68c8; /* Lavender purple header */
+    color: white;
+}
+
+/* Table cells */
+#aqi-table th, #aqi-table td {
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 18px;
+}
+
+/* Row backgrounds */
+#aqi-table tbody tr:nth-child(even) {
+    background-color: #fce4ec; /* Light pink for even rows */
+}
+
+#aqi-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+/* Hover effect on rows */
+#aqi-table tbody tr:hover {
+    background-color: #f8bbd0; /* Soft pink hover */
+    transition: background-color 0.3s ease;
+}
+
+/* AQI levels coloring */
+.aqi.good {
+    color: #2e7d32; /* Green for good AQI */
+    font-weight: bold;
+}
+
+.aqi.moderate {
+    color: #e77d0b; /* Orange for moderate AQI */
+    font-weight: bold;
+}
+
+.aqi.bad {
+    color: #ef5350; /* Red for bad AQI */
+    font-weight: bold;
+}
+
+.aqi.unhealthy {
+    color: #b71c1c; /* Dark red for unhealthy AQI */
+    font-weight: bold;
+}
