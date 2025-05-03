@@ -31,10 +31,10 @@
 }
 
 /* Container for the registration form */
-.form-container {
+.sign-up-form-container {
     background-color: navajowhite;
     height: auto;
-    width: 300px;
+    width: 350px;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 8px;
@@ -56,16 +56,19 @@
 /* Label styling inside form-group */
 .form-group label {
     width: 40%;
-    font-size: 16px;
+    font-size: 17.8px;
+    padding: 5px 5px 5px 0;
 }
 
 /* Input and select element styling inside form-group */
 .form-group input,
 .form-group select {
-    width: 75%;
-    padding: 2px;
-    font-size: 14px;
+    width: 90%;
+    padding: 5px;
+    font-size: 17px;
     box-sizing: border-box;
+    border-radius: 7px;
+    border: 1px solid rgb(80, 60, 60);
 }
 
 /* Container for radio buttons */
@@ -77,7 +80,7 @@
 /* Styling for radio input fields */
 .radio-group input[type="radio"] {
     margin-right: 5px;
-    margin-left: 0; /* remove default spacing if needed */
+    margin-left: 0;
 }
 
 /* Label spacing for radio buttons */
@@ -87,7 +90,27 @@
 
 /* Checkbox label styling */
 .checkbox-group label {
-    font-size: 14px;
+    font-size: 15px;
+}
+
+/* Container for form buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* Individual button styling */
+.button-container button {
+    margin-top: 5px;
+    padding: 6px 12px;
+    font-size: 15px;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: #5c6bc0;
+    color: white;
+    border: 2px solid white;
+    border-radius: 4px;
 }
 
 /* Styling for invalid form messages */
@@ -95,36 +118,94 @@
     color: red;
 }
 
-/* Styling for second content box on the left panel */
-.box2 {
-    background-color: rgb(212, 164, 129);
-    height: 300px;
-    border-radius: 8px;
+/* Outer Login Box on Left */
+.log-in-form-container {
+    background-color: rgba(239, 161, 106, 0.85);
+    height: 320px;
+    width: 310px;
+    border-radius: 12px;
+    color: rgb(15, 15, 15);
+    box-shadow: 0 8px 20px rgba(189, 152, 152, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-/* Styling for third content box on the right side */
-.box3 {
-    background-color: rgb(223, 157, 203);
-    height: auto;
-    width: 250px;
-    border-radius: 8px;
+/* Hover effect for buttons in form */
+.button-container button:hover {
+    background-color: rgb(55, 54, 49);
+    transform: scale(1.05);
 }
 
-/* Container for form buttons */
-.button-container {
+/* Title Styling */
+#login-title {
+    font-size: 32px;
+    margin-bottom: 14px;
+    font-weight: bold;
+}
+
+/* Blurred Box for Inputs */
+.form-blur-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 10px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+/* Label and Field Container */
+#form-container {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(65, 40, 40);
+}
+
+/* Styling for labels in login form */
+#form-container label {
+    font-size: 20px;
+    display: block;
+}
+
+/* Input Fields for Login */
+#username, #password {
+    height: 30px;
+    width: 90%;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid rgb(80, 60, 60);
+    padding: 4px 10px;
+    background-color: rgb(255, 245, 230);
+    color: rgb(40, 30, 30);
+    margin-bottom: 10px;
+}
+
+/* Buttons Layout for Login */
+.log-button-container {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px; /* 50px space on both left and right sides */
+    width: 100%;
 }
 
-/* Individual button styling */
-.button-container button {
-    margin-top: 10px;
-    padding: 6px 12px;
+/* Individual Button Styling for Login */
+.log-button-container button {
+    padding: 8px 14px;
     font-size: 14px;
+    font-weight: bold;
+    background-color: rgb(250, 214, 69);
+    color: rgb(50, 30, 30);
+    border: 2px solid rgb(70, 40, 40);
+    border-radius: 6px;
     cursor: pointer;
-    background-color: #5c6bc0;
-    color: white;
-    border: 2px solid white;
-    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect for Login Buttons */
+.log-button-container button:hover {
+    background-color: rgb(245, 244, 241);
+    transform: scale(1.05);
 }
