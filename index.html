@@ -31,7 +31,7 @@
             <!-- Sign-up form container -->
             <div class="sign-up-form-container">
                 <!-- Form start -->
-                <form onsubmit="return validateForm()">
+                <form action="process.php" method="POST" onsubmit="return validateForm()">
                     <!-- Form heading -->
                     <h2 class="form-title">Get Registration</h2>
 
@@ -45,11 +45,13 @@
                     <div class="form-group">
                         <label for="gender">Gender:</label>
                         <div class="radio-group">
-                            <input type="radio" id="male" name="gender" />
+                            <input type="radio" id="male" name="gender" value="Male"/>
                             <label for="male">Male</label>
-                            <input type="radio" id="female" name="gender" />
+
+                            <input type="radio" id="female" name="gender" value="Female"/>
                             <label for="female">Female</label>
-                            <input type="radio" id="other" name="gender" />
+
+                            <input type="radio" id="other" name="gender" value="Other"/>
                             <label for="other">Other</label>
                         </div>
                     </div>
@@ -122,23 +124,23 @@
             <!-- Login form section -->
             <div class="log-in-form-container">
                 <div id="login-title">Login</div>
-                <div class="form-blur-box">
-                    <div id="form-container">
-                        <!-- Username input -->
-                        <label for="username">Username</label><br>
-                        <input type="text" id="username" placeholder="Enter username"><br>
+                    <div class="form-blur-box">
+                        <div id="form-container">
+                            <!-- Username input -->
+                            <label for="username">Username</label><br>
+                            <input type="text" id="username" placeholder="Enter username"><br>
 
-                        <!-- Password input -->
-                        <label for="password">Password</label><br>
-                        <input type="password" id="password" placeholder="Enter password">
+                            <!-- Password input -->
+                            <label for="password">Password</label><br>
+                            <input type="password" id="password" placeholder="Enter password">
+                        </div>
                     </div>
-                </div>
 
-                <!-- Login action buttons -->
-                <div class="log-button-container">
-                    <button>Cancel</button>
-                    <button>Login</button>
-                </div>
+                    <!-- Login action buttons -->
+                    <div class="log-button-container">
+                        <button>Cancel</button>
+                        <button>Login</button>
+                    </div>
             </div>
         </div>
 
