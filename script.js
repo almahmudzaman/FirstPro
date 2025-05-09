@@ -52,17 +52,8 @@ function validateForm() {
     } else if (!terms) {
         highlightError('checkbox', "You must accept the terms.");
     } else {
-        // If all validations pass
-        messageBox.textContent = "Everything good";
-        messageBox.style.color = "green";
-        messageBox.style.display = "block";
-
-        // Hide the message after 2 seconds
-        setTimeout(() => {
-            messageBox.style.display = "none";
-        }, 2000);
-
-        return false; // Prevent actual form submission
+        // All validations passed
+        return true; //  Allow form submission
     }
 
     return false; // Prevent submission if validation fails
@@ -83,6 +74,18 @@ function highlightError(fieldId, message) {
     const input = document.getElementById(fieldId);
     if (input) {
         input.style.borderColor = "red";
+    }
+
+    if (fieldId === 'pass') {
+        document.getElementById('pass').addEventListener('input', function () {
+            const pwd = this.value;
+            const strong = pwd.length >= 8 &&
+                /[a-z]/.test(pwd) &&
+                /[A-Z]/.test(pwd) &&
+                /\d/.test(pwd) &&
+                /[^A-Za-z0-9]/.test(pwd);
+            this.style.borderColor = strong ? 'green' : 'red';
+        });
     }
 }
 
