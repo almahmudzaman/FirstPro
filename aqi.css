@@ -2,7 +2,7 @@
 .aqi-table-container {
     background-color: rgb(245, 167, 212); /* Light pink background for container */
     width: 100%;
-    max-width: 280px;
+    max-width: 380px;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
