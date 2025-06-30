@@ -117,39 +117,56 @@ function clearForm() {
             input.type = 'password'; // Reset input type to password for security
         }
     });
-
-    // Reset password visibility toggle icons
-    document.querySelectorAll('.toggle-password').forEach(eye => {
-        eye.textContent = '🙈';
-    });
 }
 
-// DOM loaded event: add password visibility toggles
-document.addEventListener('DOMContentLoaded', function() {
-    // Helper function to add eye icon next to password fields
-    const addEyeIcon = (fieldId) => {
-        const field = document.getElementById(fieldId);
-        const eye = document.createElement('span');
-        eye.className = 'toggle-password';
-        eye.innerHTML = '🙈';
-        eye.style.position = 'absolute';
-        eye.style.right = '10px';
-        eye.style.cursor = 'pointer';
-        field.parentNode.style.position = 'relative';
-        field.parentNode.insertBefore(eye, field.nextSibling);
-    };
+// Login form validation with email format check and clear button
+document.addEventListener('DOMContentLoaded', function () {
+  const loginForm = document.getElementById('login-form');
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
+  const usernameError = document.getElementById('username-error');
+  const passwordError = document.getElementById('password-error');
 
-    // Add eye icons to password and confirm password fields
-    addEyeIcon('pass');
-    addEyeIcon('conpass');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
 
-    // Add toggle functionality to eye icons
-    document.querySelectorAll('.toggle-password').forEach(eye => {
-        eye.addEventListener('click', function() {
-            const input = this.previousElementSibling;
-            const isPassword = input.type === 'password';
-            input.type = isPassword ? 'text' : 'password';
-            this.textContent = isPassword ? '👀' : '🙈'; // Change icon on toggle
-        });
+      // Clear previous messages
+      usernameError.textContent = '';
+      passwordError.textContent = '';
+
+      let hasError = false;
+
+      // Email format regex
+      const emailRegex = /^[\w.-]+@(gmail|hotmail|yahoo)\.com$/;
+
+      if (username === '') {
+        usernameError.textContent = 'Email is required.';
+        hasError = true;
+      } else if (!emailRegex.test(username)) {
+        usernameError.textContent = 'Email must end with gmail, hotmail, or yahoo.';
+        hasError = true;
+      }
+
+      if (password === '') {
+        passwordError.textContent = 'Password is required.';
+        hasError = true;
+      }
+
+      if (hasError) {
+        e.preventDefault(); // Prevent form submission
+      }
     });
+
+    // Clear button functionality
+    loginForm.querySelector('button[type="reset"]').addEventListener('click', function () {
+      usernameInput.value = '';
+      passwordInput.value = '';
+      usernameError.textContent = '';
+      passwordError.textContent = '';
+    });
+  }
 });
+
+
