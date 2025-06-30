@@ -1,14 +1,18 @@
 <?php
 session_start();
-
 $selectedCities = [];
 $error = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (!isset($_SESSION["uname"]) || empty($_SESSION["uname"]) || $_SESSION["uname"] === "guest") {
+    $loginMessage = true;
+} else {
+    $loginMessage = false;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !$loginMessage) {
     if (isset($_POST['cities'])) {
         $selectedCities = $_POST['cities'];
         $count = count($selectedCities);
-
         if ($count < 10) {
             $error = "❌ Please select exactly 10 cities. You have selected only $count.";
         } elseif ($count > 10) {
@@ -23,23 +27,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>City AQI Form</title>
+        <link rel="icon" type="image/x-icon" href="air-quality-index.png">
+
+    <title>Simple AQI</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fafafa;
             padding: 15px;
         }
-
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(255, 254, 254);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .user-info {
+            color: #2c3e50;
+        }
+        .signout-link a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .signout-link a:hover {
+            text-decoration: underline;
+        }
+        .login-msg {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px auto 20px;
+            width: fit-content;
+            box-shadow: 0 0 5px #aaa;
+        }
         h1 {
             text-align: center;
         }
-
         form {
             background-color: #e7f6e6;
             padding: 30px;
@@ -48,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
-
         label {
             display: inline-block;
             width: 200px;
@@ -57,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
             font-weight: bold;
         }
-
         input[type="checkbox"] {
             width: 14px;
             height: 14px;
@@ -65,17 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-right: 10px;
             cursor: pointer;
         }
-
-        br {
-            display: none;
-        }
-
         .button-container {
             display: flex;
             justify-content: center;
             margin-top: 10px;
         }
-
         .button-container button {
             padding: 8px 16px;
             font-size: 15px;
@@ -83,13 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             background-color: #202323;
             color: #f1ecec;
-            border: 3px solid while;
+            border: 3px solid white;
             border-radius: 5px;
         }
-
         .button-container button:hover {
-        background-color: rgb(15, 176, 133);
-        transform: scale(1.05);
+            background-color: rgb(15, 176, 133);
+            transform: scale(1.05);
         }
         .error {
             color: red;
@@ -97,39 +124,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
             margin-bottom: 10px;
         }
+        #counter {
+            display: none;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            margin: 10px auto;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
+
+<?php if (!$loginMessage && isset($_SESSION["uname"])): ?>
+    <div class="header-bar">
+        <div class="user-info">Welcome, <b><?php echo $_SESSION["uname"]; ?></b></div>
+        <div class="signout-link"><a href="signout.php">Sign Out</a></div>
+    </div>
+<?php endif; ?>
+
+<?php if ($loginMessage): ?>
+    <div class="login-msg" id="loginMsg">⚠ Please login first.</div>
+    <script>
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1000);
+    </script>
+<?php else: ?>
+
     <h1>Select Exactly 10 Cities</h1>
 
     <?php if ($error): ?>
         <p class="error"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <form method="post" action="">
-        <label>Dhaka</label><input type="checkbox" name="cities[]" value="Dhaka" /> <br>
-        <label>Delhi</label><input type="checkbox" name="cities[]" value="Delhi" /><br>
-        <label>Beijing</label><input type="checkbox" name="cities[]" value="Beijing" /><br>
-        <label>Mumbai</label><input type="checkbox" name="cities[]" value="Mumbai" /> <br>
-        <label>Tokyo</label><input type="checkbox" name="cities[]" value="Tokyo" /> <br>
-        <label>Seoul</label><input type="checkbox" name="cities[]" value="Seoul" /> <br>
-        <label>Jakarta</label><input type="checkbox" name="cities[]" value="Jakarta" /> <br>
-        <label>Bangkok</label><input type="checkbox" name="cities[]" value="Bangkok" /> <br>
-        <label>Karachi</label><input type="checkbox" name="cities[]" value="Karachi" /> <br>
-        <label>Shanghai</label><input type="checkbox" name="cities[]" value="Shanghai" /> <br>
-        <label>Manila</label><input type="checkbox" name="cities[]" value="Manila" /> <br>
-        <label>Kuala Lumpur</label><input type="checkbox" name="cities[]" value="Kuala Lumpur" /> <br>
-        <label>Hanoi</label><input type="checkbox" name="cities[]" value="Hanoi" /> <br>
-        <label>Ho Chi Minh City</label><input type="checkbox" name="cities[]" value="Ho Chi Minh City" /> <br>
-        <label>Lahore</label><input type="checkbox" name="cities[]" value="Lahore" /> <br>
-        <label>Tehran</label><input type="checkbox" name="cities[]" value="Tehran" /> <br>
-        <label>Bangalore</label><input type="checkbox" name="cities[]" value="Bangalore" /> <br>
-        <label>Shenzhen</label><input type="checkbox" name="cities[]" value="Shenzhen" /> <br>
-        <label>Osaka</label><input type="checkbox" name="cities[]" value="Osaka" /> 
+    <div id="counter">You have selected <span id="selectedCount">0</span> cities.</div>
 
+    <form method="post" action="">
+        
+        <?php
+        $cities = ["Dhaka", "Delhi", "Beijing", "Mumbai", "Tokyo", "Seoul", "Jakarta", "Bangkok", "Karachi", "Shanghai", "Manila", "Kuala Lumpur", "Hanoi", "Ho Chi Minh City", "Lahore", "Tehran", "Bangalore", "Shenzhen", "Osaka"];
+        foreach ($cities as $city) {
+            echo "<label>$city</label><input type=\"checkbox\" name=\"cities[]\" value=\"$city\" onchange=\"updateCounter()\"><br>";
+        }
+        ?>
         <div class="button-container">
             <button type="submit">Submit</button>
         </div>
     </form>
+
+    <script>
+        function updateCounter() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const count = checkboxes.length;
+            const counterDiv = document.getElementById("counter");
+            const countSpan = document.getElementById("selectedCount");
+
+            if (count > 0) {
+                counterDiv.style.display = "block";
+                countSpan.textContent = count;
+            } else {
+                counterDiv.style.display = "none";
+            }
+        }
+    </script>
+
+<?php endif; ?>
+
 </body>
 </html>
