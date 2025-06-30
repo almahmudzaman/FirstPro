@@ -209,3 +209,9 @@
     background-color: rgb(245, 244, 241);
     transform: scale(1.05);
 }
+
+.error-message {
+  color: blue;
+  font-size: 14px;
+  margin-top: 4px;
+}
