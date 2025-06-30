@@ -1,8 +1,16 @@
 <?php
 session_start();
 
+
+// Get background color from cookie
+$bgColor = '#ffffff'; // default
+$userEmail = $_SESSION['uname'] ?? '';
+if ($userEmail && isset($_COOKIE["user_color_".$userEmail])) {
+    $bgColor = $_COOKIE["user_color_".$userEmail];
+}
+
 // Restrict access if session data is missing or invalid
-if (!isset($_SESSION['selectedCities']) || count($_SESSION['selectedCities']) !== 10) {
+if((!isset($_SESSION["uname"]))&&(!isset($_SESSION['selectedCities']) || count($_SESSION['selectedCities']) !== 10)){
     session_destroy();
     header("Location: request.php");
     exit();
@@ -11,9 +19,9 @@ if (!isset($_SESSION['selectedCities']) || count($_SESSION['selectedCities']) !=
 // Database connection
 $host = "localhost";
 $username = "root";
-$password = ""; // Change if needed
+$password = ""; 
 $dbname = "AQI";
-$port = 3307; // Add this
+$port = 3307; 
 
 $conn = new mysqli($host, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
@@ -21,7 +29,7 @@ if ($conn->connect_error) {
 }
 
 
-$selectedCities = array_unique($_SESSION['selectedCities']); // Ensure unique cities
+$selectedCities = ($_SESSION['selectedCities']); 
 $placeholders = implode(',', array_fill(0, count($selectedCities), '?'));
 
 $sql = "SELECT city, country, aqi FROM info WHERE city IN ($placeholders)";
@@ -67,16 +75,52 @@ foreach ($selectedCities as $city) {
 $stmt->close();
 $conn->close();
 
-// Optional: unset session to block page reload
-unset($_SESSION['selectedCities']);
+//unset($_SESSION['selectedCities']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <link rel="icon" type="image/x-icon" href="air-quality-index.png">
+
     <meta charset="UTF-8" />
-    <title>Lab Work - AQI Table</title>
+    <title>Simple AQI</title>
     <style>
+        body {
+        background-color: <?= htmlspecialchars($bgColor) ?>;
+        margin: 0;
+        font-family: Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .top-bar {
+        display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(255, 254, 254);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .top-bar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        }
+        
+        .signout-link a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .signout-link a:hover {
+            text-decoration: underline;
+        }
+
         .aqi-table-container {
             background-color: rgb(245, 183, 218);
             width: 100%;
@@ -158,6 +202,13 @@ unset($_SESSION['selectedCities']);
     </style>
 </head>
 <body>
+
+<?php if (isset($_SESSION["uname"])): ?>
+    <div class="top-bar">
+        <div><?= htmlspecialchars($userEmail ?: 'Guest') ?></div>
+        <div class="signout-link"><a href="signout.php">Sign Out</a></div>
+    </div>
+<?php endif; ?>
 
     <div class="aqi-table-container">
         <div class="aqi-title">
