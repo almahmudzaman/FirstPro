@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab work</title>
+    <title>Simple AQI</title>
+    
+    <link rel="icon" type="image/x-icon" href="air-quality-index.png">
+
     <!-- External CSS link -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="aqi.css" />
@@ -124,24 +127,29 @@
             <!-- Login form section -->
             <div class="log-in-form-container">
                 <div id="login-title">Login</div>
+                <form action="login.php" method="POST" id="login-form">
                     <div class="form-blur-box">
                         <div id="form-container">
                             <!-- Username input -->
                             <label for="username">Username</label><br>
-                            <input type="text" id="username" placeholder="Enter username"><br>
+                            <input type="text" id="username" name="username" placeholder="Enter username" required><br>
+                            <div id="username-error" class="error-message"></div>
 
                             <!-- Password input -->
                             <label for="password">Password</label><br>
-                            <input type="password" id="password" placeholder="Enter password">
+                            <input type="password" id="password" name="password" placeholder="Enter password" required>
+                            <div id="password-error" class="error-message"></div>
                         </div>
                     </div>
-
                     <!-- Login action buttons -->
                     <div class="log-button-container">
-                        <button>Cancel</button>
-                        <button>Login</button>
+                        <button type="reset">Reset</button>
+                        <button type="submit">Login</button>
                     </div>
+                </form>
             </div>
+
+
         </div>
 
         <!-- AQI table section -->
@@ -156,23 +164,65 @@
                 <table id="aqi-table">
                     <thead>
                         <tr>
-                            <th>City</th>
-                            <th>AQI</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>AQI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Dhaka</td><td class="aqi bad">150</td></tr>
-                        <tr><td>Chittagong</td><td class="aqi moderate">120</td></tr>
-                        <tr><td>Khulna</td><td class="aqi moderate">130</td></tr>
-                        <tr><td>Rajshahi</td><td class="aqi moderate">110</td></tr>
-                        <tr><td>Sylhet</td><td class="aqi good">90</td></tr>
-                        <tr><td>Barisal</td><td class="aqi good">100</td></tr>
-                        <tr><td>Rangpur</td><td class="aqi good">80</td></tr>
-                        <tr><td>Narayanganj</td><td class="aqi unhealthy">160</td></tr>
-                        <tr><td>Gazipur</td><td class="aqi unhealthy">170</td></tr>
-                        <tr><td>Comilla</td><td class="aqi moderate">95</td></tr>
+                        <tr>
+                        <td>Delhi</td>
+                        <td>India</td>
+                        <td class="aqi unhealthy">141</td>
+                        </tr>
+                        <tr>
+                        <td>Beijing</td>
+                        <td>China</td>
+                        <td class="aqi moderate">85</td>
+                        </tr>
+                        <tr>
+                        <td>Tokyo</td>
+                        <td>Japan</td>
+                        <td class="aqi good">28</td>
+                        </tr>
+                        <tr>
+                        <td>Jakarta</td>
+                        <td>Indonesia</td>
+                        <td class="aqi unhealthy">110</td>
+                        </tr>
+                        <tr>
+                        <td>Shanghai</td>
+                        <td>China</td>
+                        <td class="aqi moderate">80</td>
+                        </tr>
+                        <tr>
+                        <td>Manila</td>
+                        <td>Philippines</td>
+                        <td class="aqi moderate">70</td>
+                        </tr>
+                        <tr>
+                        <td>Kuala Lumpur</td>
+                        <td>Malaysia</td>
+                        <td class="aqi moderate">60</td>
+                        </tr>
+                        <tr>
+                        <td>Hanoi</td>
+                        <td>Vietnam</td>
+                        <td class="unhealthy">115</td>
+                        </tr>
+                        <tr>
+                        <td>Ho Chi Minh City</td>
+                        <td>Vietnam</td>
+                        <td class="aqi unhealthy">120</td>
+                        </tr>
+                        <tr>
+                        <td>Lahore</td>
+                        <td>Pakistan</td>
+                        <td class="aqi bad">160</td>
+                        </tr>
                     </tbody>
-                </table>
+                    </table>
+
             </div>
         </div>
     </div>
